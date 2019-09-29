@@ -1,0 +1,1385 @@
+{
+	"info": {
+		"_postman_id": "601160e9-67c6-4f9e-8314-276ce1f62aae",
+		"name": "IHRM 人力资源0926",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录",
+			"item": [
+				{
+					"name": "登录异常情况",
+					"item": [
+						{
+							"name": "POST请求——用户名错误",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e67db346-6465-4925-a0fb-f56ac1e031e6",
+										"exec": [
+											"var token = pm.response.json().data",
+											"",
+											"pm.globals.set(\"login\", \"Bearer \" +token);",
+											"",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.code).to.eql(20001);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n{\"mobile\":\"13800000666\", \n\"password\":\"123456\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"login"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求—用户名为空",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e67db346-6465-4925-a0fb-f56ac1e031e6",
+										"exec": [
+											"var token = pm.response.json().data",
+											"",
+											"pm.globals.set(\"login\", \"Bearer \" +token);",
+											"",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"用户名为空，不能登录\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"mobile\":\"\", \r\n\"password\":\"123456\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"login"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求—密码错误",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e67db346-6465-4925-a0fb-f56ac1e031e6",
+										"exec": [
+											"var token = pm.response.json().data",
+											"",
+											"pm.globals.set(\"login\", \"Bearer \" +token);",
+											"",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Body is correct\", function () {",
+											"    pm.response.to.have.body({",
+											"    \"success\": false,",
+											"    \"code\": 20001,",
+											"    \"message\": \"用户名或密码错误\",",
+											"    \"data\": null",
+											"});",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"error\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"login"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求—密码为空",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e67db346-6465-4925-a0fb-f56ac1e031e6",
+										"exec": [
+											"var token = pm.response.json().data",
+											"",
+											"pm.globals.set(\"login\", \"Bearer \" +token);",
+											"",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.code).to.eql(20001);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"login"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求—请求参数为空",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e67db346-6465-4925-a0fb-f56ac1e031e6",
+										"exec": [
+											"var token = pm.response.json().data",
+											"",
+											"pm.globals.set(\"login\", \"Bearer \" +token);",
+											"",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.code).to.eql(99999);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"login"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST请求——登录成功",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e67db346-6465-4925-a0fb-f56ac1e031e6",
+								"exec": [
+									"var token = pm.response.json().data",
+									"pm.environment.set(\"login\", \"Bearer\"+token);",
+									"",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"提示操作成功\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.eql(\"操作成功！\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{url}}/api/sys/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sys",
+								"login"
+							]
+						},
+						"description": "Tpshop-LoginAPI-001"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "员工管理",
+			"item": [
+				{
+					"name": "正常情况登录—增删改查",
+					"item": [
+						{
+							"name": "POST请求——成功添加员工",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a8028a5d-44bb-444c-aa5e-ae814b054a93",
+										"exec": [
+											"var em_id = pm.response.json().data.id;",
+											"",
+											"pm.globals.set(\"ID_IH\",em_id);",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{login}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\": \"tom1\",\r\n    \"mobile\": \"15411661234\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"13221317\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"user"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求——登录成功 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e67db346-6465-4925-a0fb-f56ac1e031e6",
+										"exec": [
+											"var token = pm.response.json().data",
+											"",
+											"pm.environment.set(\"login\", \"Bearer\"+token);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"123456\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"login"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求——成功查询员工",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c92f6fc2-16d5-4332-a9a4-f24b8161784c",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{login}}"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\": \"tom\",\r\n    \"mobile\": \"15900010101\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"user",
+										"{{ID_IH}}"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求——修改员工",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a21d42c3-f915-4a4f-bbe4-d89605060532",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.code).to.eql(10000);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{login}}"
+									},
+									{
+										"key": "",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\":\"tom-new\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"user",
+										"{{ID_IH}}"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						},
+						{
+							"name": "POST请求——删除员工",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9c06cc5e-b7f4-4ca2-a94c-5b223a5b855d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Your test name\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.message).to.eql(\"操作成功！\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{login}}"
+									},
+									{
+										"key": "",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"username\": \"jackhhh\",\r\n    \"mobile\": \"15900010101\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+								},
+								"url": {
+									"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"sys",
+										"user",
+										"{{ID_IH}}"
+									]
+								},
+								"description": "Tpshop-LoginAPI-001"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "异常情况",
+					"item": [
+						{
+							"name": "查询员工模块",
+							"item": [
+								{
+									"name": "GET请求—获取不存在的用户信息",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3dd3c7b9-6de9-4a06-b011-630dc2ae55dd",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(false);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"tom\",\r\n    \"mobile\": \"13800033421\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "GET请求——传递参数为负数",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "92bba860-be4a-4e64-a8bc-b0f70b23cdf1",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.code).to.eql(99999);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"value": "",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"tom\",\r\n    \"mobile\": \"-15900010101\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "GET请求—传递参数为非法字符",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f760c32b-6f30-4b5a-9b3c-9a2b146aa2fb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(false);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"tom\",\r\n    \"mobile\": \"15900101&4%\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "添加员工模块",
+							"item": [
+								{
+									"name": "POST请求—必填项校验—姓名",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a8028a5d-44bb-444c-aa5e-ae814b054a93",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"添加员工必填姓名\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(true);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"\",\r\n    \"mobile\": \"13488888888\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "POST请求—必填项校验—手机",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a8028a5d-44bb-444c-aa5e-ae814b054a93",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"添加员工必填手机号\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(true);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"jack2\",\r\n    \"mobile\": \"\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "POST请求—必填项校验—工号",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a8028a5d-44bb-444c-aa5e-ae814b054a93",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"添加员工必填工号\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(true);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"jack3\",\r\n    \"mobile\": \"13477777777\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "POST请求——不传递参数",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a8028a5d-44bb-444c-aa5e-ae814b054a93",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.code).to.eql(99999);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "修改员工模块",
+							"item": [
+								{
+									"name": "PUT请求—员工【ID】信息不可修改",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "bdba5755-cca9-45bf-acea-973d0270b608",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(false);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"id\":\"123\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "PUT请求—员工【ID】信息不可修改",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b74be263-4129-408b-99e6-23c7cbe19186",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.code).to.eql(99999);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"mobile\":\"13812345678\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "删除员工模块",
+							"item": [
+								{
+									"name": "DELETE请求—不存在的ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "fe98d495-66e9-4df5-9117-7b02d78c4519",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(false);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"mobile\":\"03812345678\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "DELETE请求—不传入ID信息",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "1c25872c-f045-4282-935e-4bfdc5f4c344",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(false);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"jackhhh\",\r\n    \"mobile\": \"\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								},
+								{
+									"name": "DELETE请求—输入非法ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "dd2b1044-e147-42d9-973c-de255bde4411",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Your test name\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.expect(jsonData.success).to.eql(false);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"type": "text",
+												"value": "{{login}}"
+											},
+											{
+												"key": "",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\"username\": \"jackhhh\",\r\n    \"mobile\": \"159#^%10101\",\r\n    \"timeOfEntry\": \"2019-07-01\",\r\n    \"formOfEmployment\": 1,\r\n    \"workNumber\": \"1322131\",\r\n    \"departmentName\": \"开发部\",\r\n    \"departmentId\": \"1066240656856453120\",\r\n    \"correctionTime\": \"2019-11-30\"}"
+										},
+										"url": {
+											"raw": "{{url}}/api/sys/user/{{ID_IH}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"sys",
+												"user",
+												"{{ID_IH}}"
+											]
+										},
+										"description": "Tpshop-LoginAPI-001"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
